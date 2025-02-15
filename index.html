@@ -4,30 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <!-- <script src="script.js" defer></script> -->
+    <script src="script.js" defer></script>
     <title>TicTacToe</title>
 </head>
 <body>
+
+    <div class="modal">
+        <div class="modal-content">
+            <p class="winner">Player 1 Wins!</p>
+        </div>
+    </div>
+
     <div class="container">
         <div class="leftSide">
-            <p id="playerOneName">PLAYER</p>
+            <p class="moveIdent">Current Move</p>
+            <p id="playerOneName">PLAYER 1</p>
             <p id="playerOneScore">0</p>
-        </div>
+        </div>  
 
         <div class="board">
-            <div class="box top-l"><p class="markerItem"></p></div>
-            <div class="box top-m"><p class="markerItem"></p></div>
-            <div class="box top-r"><p class="markerItem"></p></div>
-            <div class="box mid-l"><p class="markerItem"></p></div>
-            <div class="box mid-m"><p class="markerItem"></p></div>
-            <div class="box mid-r"><p class="markerItem"></p></div>
-            <div class="box bot-l"><p class="markerItem"></p></div>
-            <div class="box bot-m"><p class="markerItem"></p></div>
-            <div class="box bot-r"><p class="markerItem"></p></div>
+            <div class="box top-l"></div>
+            <div class="box top-m"></div>
+            <div class="box top-r"></div>
+            <div class="box mid-l"></div>
+            <div class="box mid-m"></div>
+            <div class="box mid-r"></div>
+            <div class="box bot-l"></div>
+            <div class="box bot-m"></div>
+            <div class="box bot-r"></div>
         </div>
 
         <div class="rightSide">
-            <p id="playerTwoName">PLAYER</p>
+            <p id="playerTwoName">PLAYER 2</p>
             <p id="playerTwoScore">0</p>
         </div>
 

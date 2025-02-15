@@ -7,19 +7,38 @@ const gameBoard = (() => {
     ]
 
     const setplayerMarker = (boardRow, boardColumn, playerMarker) => {
-        board[boardRow][boardColumn] = playerMarker;
+
+        if (board[boardRow][boardColumn] == "") {
+            board[boardRow][boardColumn] = playerMarker;
+        } else {
+            console.log("Already Full")
+            if (currentPlayerTracker.name == "playerOne") {
+                currentPlayerTracker = playerTwo
+            } else {
+                currentPlayerTracker = playerOne
+            }
+        }
+
     }
 
     const displayBoard = () => {
         console.log(board)
     }
 
-    const resetBoard = () => {
+    const resetGame= () => {
         board = [
             ["", "", ""],
             ["", "", ""],
             ["", "", ""]
         ]
+
+        squares.forEach(square => {
+            square.innerHTML = ""
+        })
+
+        // Starts back from player one
+        currentPlayerTracker = playerOne
+
     }
 
     const checkWin = (currentPlayer) => {
@@ -67,13 +86,20 @@ const gameBoard = (() => {
         }
 
         if (isWin) {
-            console.log(`${currentPlayer.name} Wins!`)
-            gameRunning = false
+
+            const modal = document.querySelector(".modal")
+            modal.setAttribute("style", "display:inline")
+
+            setTimeout(() => {
+                modal.setAttribute("style", "display:none")
+                gameBoard.resetGame();
+            }, 2000)
+
         }
 
     }
 
-    return {setplayerMarker, displayBoard, resetBoard, checkWin}
+    return {setplayerMarker, displayBoard, resetGame, checkWin}
 })()
 
 // Player Objects
@@ -102,9 +128,6 @@ let currentPlayerTracker = playerOne
 
 const game = (currentPlayer) => {
 
-    move = prompt("Where to Move?")
-
-    gameBoard.setplayerMarker(move.split(" ")[0], move.split(" ")[1], currentPlayer.playerMarker)
     gameBoard.displayBoard();
     gameBoard.checkWin(currentPlayer)
 
@@ -112,8 +135,34 @@ const game = (currentPlayer) => {
 
 }
 
-let gameRunning = true
+function registerMove(square) {
+    // className comes is as : box top-l
+    // so moveRow will become the row it's in E.G top, mid, bottom
+    moveRow = square.className.split(" ")[1].split("-")[0];
+    moveRow = (moveRow == "top") ? 0 : (moveRow == "mid") ? 1 : 2
 
-while (gameRunning) {
+    moveColumn = square.className.split(" ")[1].split("-")[1];
+    moveColumn = (moveColumn == "l") ? 0 : (moveColumn == "m") ? 1 : 2
+
+
+    // Show Move Graphically
+    const markerItem = document.createElement("p")
+    markerItem.classList.add("markerItem")
+
+    markerItem.innerHTML = currentPlayerTracker.playerMarker
+    square.appendChild(markerItem)
+    
+
+    gameBoard.setplayerMarker(moveRow, moveColumn, currentPlayerTracker.playerMarker)
+
     game(currentPlayerTracker)
+
 }
+
+const squares = document.querySelectorAll(".box")
+
+squares.forEach(square => {
+    square.addEventListener("click", () => {
+        registerMove(square)
+    })
+});
