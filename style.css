@@ -58,13 +58,15 @@ body {
     margin-left: 40px;
 }
 
-.moveIdent {
+.moveIdentLeft, .moveIdentRight {
     font-size:20px;
+    display: none;
     color:white;
     border: 1px solid red;
     background-color: red;
     border-radius: 20px;
 }
+
 
 .modal {
     display: none;

@@ -93,6 +93,13 @@ const gameBoard = (() => {
             setTimeout(() => {
                 modal.setAttribute("style", "display:none")
                 currentPlayer.addScore()
+
+                const playerOneScore = document.querySelector("#playerOneScore")
+                const playerTwoScore = document.querySelector("#playerTwoScore")
+
+                playerOneScore.textContent = playerOne.getScore()
+                playerTwoScore.textContent = playerTwo.getScore()
+
                 gameBoard.resetGame();
                 
             }, 2000)
@@ -127,14 +134,16 @@ playerOne = Player("playerOne", "X")
 playerTwo = Player("playerTwo", "O")
 let currentPlayerTracker = playerOne
 
+
 const game = (currentPlayer) => {
 
     gameBoard.displayBoard();
     gameBoard.checkWin(currentPlayer)
 
     currentPlayerTracker = currentPlayer.name == "playerOne" ? currentPlayerTracker = playerTwo : currentPlayerTracker = playerOne
-
+    
 }
+
 
 function registerMove(square) {
     // className comes is as : box top-l
@@ -145,14 +154,13 @@ function registerMove(square) {
     moveColumn = square.className.split(" ")[1].split("-")[1];
     moveColumn = (moveColumn == "l") ? 0 : (moveColumn == "m") ? 1 : 2
 
-
     // Show Move Graphically
     const markerItem = document.createElement("p")
     markerItem.classList.add("markerItem")
 
     markerItem.innerHTML = currentPlayerTracker.playerMarker
     square.appendChild(markerItem)
-    
+
 
     gameBoard.setplayerMarker(moveRow, moveColumn, currentPlayerTracker.playerMarker)
 
