@@ -92,11 +92,12 @@ const gameBoard = (() => {
 
             setTimeout(() => {
                 modal.setAttribute("style", "display:none")
+                currentPlayer.addScore()
                 gameBoard.resetGame();
+                
             }, 2000)
 
         }
-
     }
 
     return {setplayerMarker, displayBoard, resetGame, checkWin}
