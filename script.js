@@ -24,44 +24,51 @@ const gameBoard = (() => {
 
     const checkWin = (currentPlayer) => {
         
+        let isWin = false;
+
         // Horizontal Win - Row 1
         if (board[0][0] == currentPlayer.playerMarker && board[0][1] == currentPlayer.playerMarker && board[0][2] == currentPlayer.playerMarker ) {
-            console.log(`${currentPlayer.name} Wins!`)
+            isWin = true
         }
 
         // Horizontal Win - Row 2
         if (board[1][0] == currentPlayer.playerMarker && board[1][1] == currentPlayer.playerMarker && board[1][2] == currentPlayer.playerMarker ) {
-            console.log(`${currentPlayer.name} Wins!`)
+            isWin = true
         }
 
         // Horizontal Win - Row 3
         if (board[2][0] == currentPlayer.playerMarker && board[2][1] == currentPlayer.playerMarker && board[2][2] == currentPlayer.playerMarker ) {
-            console.log(`${currentPlayer.name} Wins!`)
+            isWin = true
         }
 
         // Vertical Win - Col 1
         if (board[0][0] == currentPlayer.playerMarker && board[1][0] == currentPlayer.playerMarker && board[2][0] == currentPlayer.playerMarker ) {
-            console.log(`${currentPlayer.name} Wins!`)
+            isWin = true
         }
 
         // Vertical Win - Col 2
         if (board[0][1] == currentPlayer.playerMarker && board[1][1] == currentPlayer.playerMarker && board[2][1] == currentPlayer.playerMarker ) {
-            console.log(`${currentPlayer.name} Wins!`)
+            isWin = true
         }
 
         // Vertical Win - Col 3
         if (board[0][2] == currentPlayer.playerMarker && board[1][2] == currentPlayer.playerMarker && board[2][2] == currentPlayer.playerMarker ) {
-            console.log(`${currentPlayer.name} Wins!`)
+            isWin = true
         }
 
         // Diagonal Win - Bottom Left to Top Right
         if (board[2][0] == currentPlayer.playerMarker && board[1][1] == currentPlayer.playerMarker && board[0][2] == currentPlayer.playerMarker ) {
-            console.log(`${currentPlayer.name} Wins!`)
+            isWin = true
         }
 
         // Diagonal Win - Top Left to Bottom Right
         if (board[0][0] == currentPlayer.playerMarker && board[1][1] == currentPlayer.playerMarker && board[2][2] == currentPlayer.playerMarker ) {
+            isWin = true
+        }
+
+        if (isWin) {
             console.log(`${currentPlayer.name} Wins!`)
+            gameRunning = false
         }
 
     }
@@ -91,6 +98,7 @@ const Player = (name, playerMarker) => {
 
 playerOne = Player("playerOne", "X")
 playerTwo = Player("playerTwo", "O")
+let currentPlayerTracker = playerOne
 
 const game = (currentPlayer) => {
 
@@ -100,8 +108,12 @@ const game = (currentPlayer) => {
     gameBoard.displayBoard();
     gameBoard.checkWin(currentPlayer)
 
+    currentPlayerTracker = currentPlayer.name == "playerOne" ? currentPlayerTracker = playerTwo : currentPlayerTracker = playerOne
+
 }
 
-while (true) {
-    game(playerOne)
+let gameRunning = true
+
+while (gameRunning) {
+    game(currentPlayerTracker)
 }
