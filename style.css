@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    color:white
+}
+
+:root {
+    --bg-clr:rgba(17,17,27,255);
+    --square-clr:rgba(30,30,46,255);
+    --square-selt-clr:#3a3d54
+}
+
+body {
+    background-color: var(--bg-clr);
+    height: 100vh
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.board {
+    display: grid;
+    gap: 50px;
+    grid-template-columns: repeat(3, 200px);
+
+}
+
+.box {
+    background-color: var(--square-clr);
+    height: 200px;
+    width: 200px;
+    border-radius: 20px;
+}
+
+.box:hover {
+    background-color: var(--square-selt-clr)
+}
+
+.box .markerItem {
+    height: 100%;
+    font-size: 150px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.leftSide, .rightSide {
+    font-size: 75px;
+    text-align: center;
+    margin-right: 40px;
+    margin-left: 40px;
+}
