@@ -67,6 +67,9 @@ body {
     border-radius: 20px;
 }
 
+.moveIdentLeft {
+    display: block;
+}
 
 .modal {
     display: none;
@@ -86,6 +89,13 @@ body {
 .winner {
     color:black;
     font-size: 30px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.resetting {
+    color:black;
+    font-size: 15px;
     text-align: center;
     margin-top: 10px;
 }
