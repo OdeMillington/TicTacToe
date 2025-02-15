@@ -17,6 +17,7 @@ const gameBoard = (() => {
         }
       }
     };
+
   
     const resetGame = () => {
       board = [
@@ -34,6 +35,10 @@ const gameBoard = (() => {
   
       controlMoveIdent();
     };
+
+    const displayBoard = () => {
+      console.log(board)
+    }
   
     const checkWin = (currentPlayer) => {
       let isWin = false;
@@ -132,7 +137,7 @@ const gameBoard = (() => {
     
     };
   
-    return { setplayerMarker, resetGame, checkWin };
+    return { setplayerMarker, resetGame, checkWin, displayBoard };
   })();
   
   // Player Objects
@@ -183,6 +188,12 @@ const gameBoard = (() => {
   };
   
   function registerMove(square) {
+
+    // Stops double selecting
+    if (square.querySelector(".markerItem")) {
+      return
+  }
+    
     // className comes is as : box top-l
     // so moveRow will become the row it's in E.G top, mid, bottom
     moveRow = square.className.split(" ")[1].split("-")[0];
